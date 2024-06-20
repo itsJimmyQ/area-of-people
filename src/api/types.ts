@@ -19,3 +19,16 @@ export interface LibraryDetailsDto extends LibraryDto {
   last_publish_date: string;
   license: string;
 }
+
+export type Library = {
+  id: string;
+  name: string;
+  author: string;
+  description: string;
+  total_downloads: number;
+  downloads_last_seven_days: number[];
+  install_size: number;
+  last_publish_date: string;
+  license: string;
+  latest_version: string;
+};

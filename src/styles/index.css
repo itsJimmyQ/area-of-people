@@ -1,0 +1,28 @@
+@tailwind base;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  @apply text-5xl font-medium text-black md:text-6xl;
+}
+
+h2 {
+  @apply text-2xl font-medium text-black md:text-4xl;
+}
+
+h3 {
+  @apply text-lg font-medium text-black md:text-2xl;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.max-w-contained {
+  max-width: 1200px;
+  margin: 0px auto;
+}

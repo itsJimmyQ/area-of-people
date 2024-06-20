@@ -18,7 +18,18 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "common": ["src/components/common/index"],
+      "common/*": ["src/components/common/*"],
+      "modules": ["src/components/modules/index"],
+      "modules/*": ["src/components/modules/*"],
+      "service": ["src/service/index"],
+      "service/*": ["src/service/*"],
+      "queries": ["src/queries/index"],
+      "queries/*": ["src/queries/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

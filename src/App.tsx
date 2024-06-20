@@ -1,13 +1,17 @@
-export function App() {
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import { OverviewPage } from "./pages/OverviewPage";
+
+export const App = () => {
+  const queryClient = new QueryClient();
+
   return (
-    <div className="max-w-2xl mx-auto mt-8 flex flex-col gap-4">
-      <header className="flex flex-row gap-8 items-center border-gray-100">
-        <img src="/aop.svg" alt="Area of People" width={80} />
-        <h1 className="text-xl font-semibold">Top most downloaded libraries</h1>
-      </header>
-      <main>
-        ...
+    <QueryClientProvider client={queryClient}>
+      <main className="min-h-dvh w-full p-4 md:py-10">
+        <OverviewPage />
       </main>
-    </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
-}
+};
