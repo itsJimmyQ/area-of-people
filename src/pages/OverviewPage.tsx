@@ -3,6 +3,7 @@ import { Button } from "common";
 
 import { LibraryResultListView } from "modules/library";
 import { useGetListLibraries } from "queries/libraries";
+import { InputField } from "common/InputField";
 
 export const OverviewPage = ({}: OverviewPageProps) => {
   const [search, setSearch] = React.useState<string>("");
@@ -11,10 +12,6 @@ export const OverviewPage = ({}: OverviewPageProps) => {
   const queryListLibrary = useGetListLibraries({
     search,
   });
-
-  if (queryListLibrary.isPending) {
-    return <div className="max-w-contained">Loading...</div>;
-  }
 
   if (queryListLibrary.isError) {
     return (
@@ -35,22 +32,20 @@ export const OverviewPage = ({}: OverviewPageProps) => {
       <div className="flex w-full flex-col gap-4">
         {/* SearchField */}
         <form className="flex w-full items-end gap-4" onSubmit={onSubmitSearch}>
-          {/* InputField */}
-          <div className="flex flex-1 flex-col gap-2">
-            <label htmlFor="package_name">Search by name</label>
-            <input
-              ref={refSearchField}
-              name="package_name"
-              id="package_name"
-              placeholder="e.g. Axios"
-              className="h-12 w-full rounded-lg border border-gray-300 bg-gray-100 px-3 focus:border-gray-400 md:h-16 md:px-4"
-            />
-          </div>
+          <InputField
+            name="package_name"
+            id="package_name"
+            placeholder="e.g. Axios"
+            ref={refSearchField}
+          />
           <Button type="submit">Search</Button>
         </form>
       </div>
 
-      <LibraryResultListView libraries={queryListLibrary.data} />
+      <LibraryResultListView
+        libraries={queryListLibrary?.data || []}
+        isLoading={queryListLibrary.isPending}
+      />
     </div>
   );
 };

@@ -3,7 +3,14 @@ import { LibraryResultListItem } from "./LibraryResultListitem";
 
 export const LibraryResultListView = ({
   libraries,
+  isLoading,
 }: LibraryResultListViewProps) => {
+  if (isLoading) {
+    return (
+      <p className="text-medium mb-4 text-lg">{libraries.length} results</p>
+    );
+  }
+
   return (
     <div className="w-full">
       <p className="text-medium mb-4 text-lg">{libraries.length} results</p>
@@ -18,4 +25,5 @@ export const LibraryResultListView = ({
 
 type LibraryResultListViewProps = {
   libraries: LibraryDto[];
+  isLoading: boolean;
 };
