@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "common";
+import { Button, Error } from "common";
 
 import { LibraryResultListView } from "modules/library";
 import { useGetListLibraries } from "queries/libraries";
@@ -16,7 +16,7 @@ export const OverviewPage = ({}: OverviewPageProps) => {
   if (queryListLibrary.isError) {
     return (
       <div className="max-w-contained">
-        Error: {queryListLibrary.error.message}
+        <Error />
       </div>
     );
   }

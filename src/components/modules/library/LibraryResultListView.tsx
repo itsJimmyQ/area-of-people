@@ -6,9 +6,7 @@ export const LibraryResultListView = ({
   isLoading,
 }: LibraryResultListViewProps) => {
   if (isLoading) {
-    return (
-      <p className="text-medium mb-4 text-lg">{libraries.length} results</p>
-    );
+    return <p className="text-medium mb-4 text-lg">Loading..</p>;
   }
 
   return (

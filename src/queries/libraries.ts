@@ -40,5 +40,5 @@ export const useGetLibraryDetail = (payload: GetLibraryDetailPayload) => {
 };
 
 type GetLibraryDetailPayload = {
-  libraryId: string;
+  libraryId: number;
 };

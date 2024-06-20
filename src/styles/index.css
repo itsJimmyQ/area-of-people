@@ -7,16 +7,22 @@
   font-family: "Inter", sans-serif;
 }
 
+h1,
+h2,
+h3 {
+  @apply font-medium leading-[100%];
+}
+
 h1 {
-  @apply text-5xl font-medium text-black md:text-6xl;
+  @apply text-5xl md:text-6xl;
 }
 
 h2 {
-  @apply text-2xl font-medium text-black md:text-4xl;
+  @apply text-2xl md:text-4xl;
 }
 
 h3 {
-  @apply text-lg font-medium text-black md:text-2xl;
+  @apply text-lg md:text-2xl;
 }
 
 @tailwind components;
