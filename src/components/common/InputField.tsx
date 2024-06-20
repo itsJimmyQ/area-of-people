@@ -7,7 +7,7 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
         <label htmlFor="package_name">Search by name</label>
         <input
           ref={ref}
-          className="h-12 w-full rounded-lg border border-gray-300 bg-gray-100 px-3 focus:border-gray-400 md:h-16 md:px-4"
+          className="h-12 w-full rounded-md border border-gray-300 bg-gray-100 px-3 focus:border-gray-400 md:h-16 md:rounded-lg md:px-4 md:text-lg"
           {...otherProps}
         />
       </div>

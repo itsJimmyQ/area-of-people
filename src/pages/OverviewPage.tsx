@@ -31,7 +31,10 @@ export const OverviewPage = ({}: OverviewPageProps) => {
       {/* Filter */}
       <div className="flex w-full flex-col gap-4">
         {/* SearchField */}
-        <form className="flex w-full items-end gap-4" onSubmit={onSubmitSearch}>
+        <form
+          className="flex w-full items-end gap-2 md:gap-4"
+          onSubmit={onSubmitSearch}
+        >
           <InputField
             name="package_name"
             id="package_name"

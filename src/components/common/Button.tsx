@@ -5,7 +5,7 @@ export const Button = ({ children, className, ...otherProps }: ButtonProps) => {
   return (
     <button
       className={cn(
-        "h-12 rounded-lg bg-blue-500 text-base text-white md:h-16 md:px-10",
+        "h-12 rounded-md bg-blue-500 px-4 text-white md:h-16 md:rounded-lg md:px-10",
         className,
       )}
       {...otherProps}
