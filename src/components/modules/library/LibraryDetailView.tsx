@@ -4,8 +4,20 @@ import { LibraryAttributeCard } from "./LibraryAttributeCard";
 
 export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
   const queryLibraryDetail = useGetLibraryDetail({
-    libraryId,
+    libraryId: parseInt(libraryId),
   });
+
+  const formatAmount = (value: number) => {
+    let formattedValue = value.toString();
+
+    if (value >= 1000000) {
+      formattedValue = (value / 1000000).toFixed(2).replace(/\.0$/, "") + "M";
+    } else if (value >= 1000) {
+      formattedValue = (value / 1000).toFixed(2).replace(/\.0$/, "") + "K";
+    }
+
+    return formattedValue;
+  };
 
   if (queryLibraryDetail.isPending) {
     return (
@@ -23,9 +35,9 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
     );
   }
 
-  // Format number
+  // Format valueber
   const formattedTotalDownloads = `
-    ${queryLibraryDetail.data.total_downloads.toString()}
+    ${formatAmount(queryLibraryDetail.data.total_downloads)}
   `;
   const formattedUnpackedSize = `
     ${(queryLibraryDetail.data.install_size / 1024 / 1024).toString()} MB
@@ -66,5 +78,5 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
 };
 
 type LibraryDetailViewProps = {
-  libraryId: number;
+  libraryId: string;
 };

@@ -4,6 +4,10 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App.tsx";
 import "./styles/index.css";
 import { worker } from "./mocks/browser.ts";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { OverviewPage } from "./pages/OverviewPage.tsx";
+import { DetailPage } from "./pages/DetailPage.tsx";
+import { NotFoundPage } from "./pages/404.tsx";
 
 async function main() {
   // Start the mocking server when the app is started
@@ -11,9 +15,26 @@ async function main() {
     onUnhandledRequest: "bypass",
   });
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <NotFoundPage />,
+      children: [
+        {
+          element: <OverviewPage />,
+        },
+        {
+          path: "libraries/:libraryId",
+          element: <DetailPage />,
+        },
+      ],
+    },
+  ]);
+
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </React.StrictMode>,
   );
 }
