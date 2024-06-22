@@ -76,8 +76,7 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
           </div>
         </div>
 
-        {/* GRAPH */}
-        {/* TODO: Extract to common component */}
+        {/* Graph */}
         <div className="flex flex-1 flex-col gap-4">
           <p className="text-lg">Downloads of last 7 days</p>
           <div className="flex w-full flex-1">
