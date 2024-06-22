@@ -5,7 +5,7 @@ export const SelectField = ({
   onChange,
 }: SelectFieldProps) => {
   return (
-    <div className="flex flex-1 flex-col gap-2">
+    <div className="flex w-full flex-1 flex-col gap-2 md:w-[120px]">
       <label htmlFor={name}>{label}</label>
       <select
         className="h-[48px] w-full rounded-md border border-gray-300 bg-gray-100 px-3"

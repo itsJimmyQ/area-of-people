@@ -77,12 +77,13 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
         </div>
 
         {/* GRAPH */}
+        {/* TODO: Extract to common component */}
         <div className="flex flex-1 flex-col gap-4">
           <p className="text-lg">Downloads of last 7 days</p>
           <div className="flex w-full flex-1">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart width={730} height={250} data={formattedData}>
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="3 3" fill="#f0f9ff" />
                 <XAxis dataKey="labelX" />
                 <YAxis />
                 <Tooltip />
