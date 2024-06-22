@@ -20,19 +20,11 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
   });
 
   if (queryLibraryDetail.isPending) {
-    return (
-      <div className="max-w-contained">
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (queryLibraryDetail.isError) {
-    return (
-      <div className="max-w-contained">
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   const formattedTotalDownloads = `
@@ -53,7 +45,7 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
   );
 
   return (
-    <div className="flex h-full flex-col gap-6 md:gap-16">
+    <div className="flex h-full w-full flex-col gap-6 md:gap-16">
       {/* Header */}
       <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-1">

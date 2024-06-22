@@ -5,7 +5,7 @@ export const DetailPage = () => {
   const { libraryId } = useParams<Params>();
 
   return (
-    <div className="max-w-contained flex h-full w-full flex-col">
+    <div className="max-w-contained flex h-full w-full flex-col items-center justify-center">
       <LibraryDetailView libraryId={libraryId!} />
     </div>
   );

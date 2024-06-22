@@ -15,7 +15,7 @@ export const LibraryResultListItem = ({
         </p>
       </div>
       <Link
-        to={`/${library.id}`}
+        to={`/libraries/${library.id}`}
         className="whitespace-nowrap rounded-md border border-blue-300 bg-transparent px-4 py-2 text-sm text-blue-500 transition hover:bg-blue-50"
       >
         See more
