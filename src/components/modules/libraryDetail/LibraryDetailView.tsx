@@ -12,23 +12,12 @@ import {
 import dayjs from "dayjs";
 
 import { LibraryAttributeCard } from "./LibraryAttributeCard";
+import { formatNumberToNaturalLanguage } from "service/utils";
 
 export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
   const queryLibraryDetail = useGetLibraryDetail({
     libraryId: parseInt(libraryId),
   });
-
-  const formatAmount = (value: number) => {
-    let formattedValue = value.toString();
-
-    if (value >= 1000000) {
-      formattedValue = (value / 1000000).toFixed(2).replace(/\.0$/, "") + "M";
-    } else if (value >= 1000) {
-      formattedValue = (value / 1000).toFixed(2).replace(/\.0$/, "") + "K";
-    }
-
-    return formattedValue;
-  };
 
   if (queryLibraryDetail.isPending) {
     return (
@@ -47,7 +36,7 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
   }
 
   const formattedTotalDownloads = `
-    ${formatAmount(queryLibraryDetail.data.total_downloads)}
+    ${formatNumberToNaturalLanguage(queryLibraryDetail.data.total_downloads)}
   `;
   const formattedUnpackedSize = `
     ${(queryLibraryDetail.data.install_size / 1024 / 1024).toFixed(2).toString()}MB

@@ -1,10 +1,11 @@
-import { Button, Error, InputField } from "common";
+import { Button, Error, InputField, SelectField } from "common";
 import * as React from "react";
 import { LibraryResultListView } from "./LibraryResultListView";
 import { useGetListLibraries } from "queries/libraries";
 
 export const LibraryOverviewView = () => {
-  const [search, setSearch] = React.useState<string>("");
+  const [search, setSearch] = React.useState("");
+  const [order, setOrder] = React.useState<Order>("asc");
   const refSearchField = React.useRef<HTMLInputElement>(null);
 
   const queryListLibrary = useGetListLibraries({
@@ -16,6 +17,10 @@ export const LibraryOverviewView = () => {
     setSearch(refSearchField.current?.value || "");
   };
 
+  const onChangeOrder = (value: string) => {
+    setOrder(value as Order);
+  };
+
   if (queryListLibrary.isError) {
     return (
       <div className="max-w-contained">
@@ -23,6 +28,18 @@ export const LibraryOverviewView = () => {
       </div>
     );
   }
+
+  const listResults = (queryListLibrary.data || []).sort((a, b) => {
+    if (order === "desc") {
+      return a.total_downloads - b.total_downloads;
+    } else {
+      return b.total_downloads - a.total_downloads;
+    }
+  });
+  const optionsOrder: { label: string; value: Order }[] = [
+    { label: "Total downloads (high to low)", value: "desc" },
+    { label: "Total downloads (low to high)", value: "asc" },
+  ];
 
   return (
     <>
@@ -33,19 +50,27 @@ export const LibraryOverviewView = () => {
           onSubmit={onSubmitSearch}
         >
           <InputField
+            label="Search for a package"
             name="package_name"
-            id="package_name"
             placeholder="e.g. Axios"
             ref={refSearchField}
           />
           <Button type="submit">Search</Button>
         </form>
+        <SelectField
+          name="order"
+          label="Sor by"
+          options={optionsOrder}
+          onChange={onChangeOrder}
+        />
       </div>
 
       <LibraryResultListView
-        libraries={queryListLibrary?.data || []}
+        libraries={listResults}
         isLoading={queryListLibrary.isPending}
       />
     </>
   );
 };
+
+type Order = "asc" | "desc";
