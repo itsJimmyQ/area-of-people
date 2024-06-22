@@ -8,7 +8,7 @@ export const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="min-h-dvh w-full px-4 py-6 md:py-10">
+      <main className="h-dvh min-h-dvh w-full px-4 py-6 md:py-10">
         <Outlet />
       </main>
       <ReactQueryDevtools initialIsOpen={false} />

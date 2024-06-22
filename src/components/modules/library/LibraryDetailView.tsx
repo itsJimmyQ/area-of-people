@@ -1,5 +1,16 @@
 import { Error, Loading } from "common";
 import { useGetLibraryDetail } from "queries/libraries";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import dayjs from "dayjs";
+
 import { LibraryAttributeCard } from "./LibraryAttributeCard";
 
 export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
@@ -35,18 +46,27 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
     );
   }
 
-  // Format valueber
   const formattedTotalDownloads = `
     ${formatAmount(queryLibraryDetail.data.total_downloads)}
   `;
   const formattedUnpackedSize = `
-    ${(queryLibraryDetail.data.install_size / 1024 / 1024).toString()} MB
+    ${(queryLibraryDetail.data.install_size / 1024 / 1024).toFixed(2).toString()}MB
   `;
+  const formattedData = queryLibraryDetail.data.downloads_last_seven_days.map(
+    (item, index) => {
+      const currDate = dayjs().subtract(7 - index, "day");
+
+      return {
+        labelX: currDate.format("MM-DD"),
+        valueY: item,
+      };
+    },
+  );
 
   return (
-    <div className="max-w-contained flex flex-col gap-6 md:gap-16">
+    <div className="flex h-full flex-col gap-6 md:gap-16">
       {/* Header */}
-      <div className="flex flex-col items-end gap-6 md:flex-row md:justify-between">
+      <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-1">
           <h1>{queryLibraryDetail.data.name}</h1>
           <p>{queryLibraryDetail.data.description}</p>
@@ -69,9 +89,19 @@ export const LibraryDetailView = ({ libraryId }: LibraryDetailViewProps) => {
       </div>
 
       {/* GRAPH */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-1 flex-col gap-4">
         <p className="text-lg">Downloads of last 7 days</p>
-        <div className="flex h-[640px] w-full bg-blue-300" />
+        <div className="flex w-full flex-1">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={730} height={250} data={formattedData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="labelX" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="valueY" fill="black" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,11 @@ import { LibraryDetailView } from "modules/library";
 export const DetailPage = () => {
   const { libraryId } = useParams<Params>();
 
-  return <LibraryDetailView libraryId={libraryId!} />;
+  return (
+    <div className="max-w-contained flex h-full w-full flex-col">
+      <LibraryDetailView libraryId={libraryId!} />
+    </div>
+  );
 };
 
 type Params = {

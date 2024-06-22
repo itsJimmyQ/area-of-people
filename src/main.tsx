@@ -22,6 +22,7 @@ async function main() {
       errorElement: <NotFoundPage />,
       children: [
         {
+          path: "libraries",
           element: <OverviewPage />,
         },
         {
