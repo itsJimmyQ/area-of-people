@@ -4,7 +4,11 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App.tsx";
 import "./styles/index.css";
 import { worker } from "./mocks/browser.ts";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import { OverviewPage } from "./pages/OverviewPage.tsx";
 import { DetailPage } from "./pages/DetailPage.tsx";
 import { NotFoundPage } from "./pages/404.tsx";
@@ -21,6 +25,8 @@ async function main() {
       element: <App />,
       errorElement: <NotFoundPage />,
       children: [
+        { index: true, element: <Navigate to="/libraries" replace /> },
+
         {
           path: "libraries",
           element: <OverviewPage />,
