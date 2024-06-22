@@ -1,3 +1,5 @@
+import { IconLoader2 } from "@tabler/icons-react";
+
 export const Loading = () => {
-  return <p className="text-medium mb-4 text-lg">Loading...</p>;
+  return <IconLoader2 className="animate-spin stroke-blue-300" size={80} />;
 };

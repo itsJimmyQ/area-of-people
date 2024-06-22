@@ -19,9 +19,12 @@ export default {
       "3xl": "2rem",
       "4xl": "2.25rem",
       "5xl": "3rem",
-      "6xl": "4rem",
     },
-    extend: {},
+    extend: {
+      animation: {
+        spin: "spin 1s linear infinite",
+      },
+    },
   },
   plugins: [],
 };

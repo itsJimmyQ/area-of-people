@@ -1,12 +1,18 @@
 import { LibraryDto } from "src/api/types";
-import { LibraryResultListItem } from "./LibraryResultListitem";
+
+import { LibraryResultListItem } from ".";
+import { Loading } from "common";
 
 export const LibraryResultListView = ({
   libraries,
   isLoading,
 }: LibraryResultListViewProps) => {
   if (isLoading) {
-    return <p className="text-medium mb-4 text-lg">Loading..</p>;
+    return (
+      <div className="flex w-full flex-1 items-center justify-center">
+        <Loading />
+      </div>
+    );
   }
 
   return (

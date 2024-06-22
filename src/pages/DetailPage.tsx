@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { LibraryDetailView } from "modules/library";
+import { LibraryDetailView } from "modules/libraryDetail";
 
 export const DetailPage = () => {
   const { libraryId } = useParams<Params>();
